@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>AR.js A-Frame Example</title>
     <!-- Import A-Frame and AR.js libraries -->
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  </head>
-  <body style="margin: 0; overflow: hidden;">
+</head>
+
+<body style="margin: 0; overflow: hidden;">
     <!-- AR.js Scene -->
     <a-scene embedded arjs>
-      
-      <!-- Define the Hiro Marker -->
-      <a-marker preset="hiro">
-        <!-- 3D Model -->
-        <!-- Using a sample GLB from Khronos Group (a Duck) -->
-        <a-entity 
-          position="0 0 0" 
-          scale="0.5 0.5 0.5"
-          gltf-model="https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models/2.0/Duck/glTF-Binary/Duck.glb"
-        ></a-entity>
-        
-        <!-- Setup for your local file (uncomment to use): -->
-        <!-- 
-        <a-entity 
-          position="0 0 0" 
-          scale="0.5 0.5 0.5"
-          gltf-model="./10_2_2026.glb"
-        ></a-entity> 
-        -->
-      </a-marker>
-      
-      <!-- Camera -->
-      <a-entity camera></a-entity>
+
+        <a-assets>
+            <a-asset-item id="modelo-traje" src="./10_2_2026.glb"></a-asset-item>
+        </a-assets>
+
+        <!-- Iluminación mejorada -->
+        <a-entity light="type: ambient; color: #ffffff; intensity: 10"></a-entity>
+        <a-entity light="type: directional; color: #ffffff; intensity: 1.0" position="-1 1 1"></a-entity>
+        <a-entity light="type: directional; color: #ffffff; intensity: 0.5" position="1 1 -1"></a-entity>
+
+        <!-- Definimos el Marcador Hiro -->
+        <a-marker preset="hiro">
+
+            <!-- Tu Modelo Local con escala ajustada -->
+            <a-entity gltf-model="#modelo-traje" scale="3.0 3.0 3.0" position="0 0 0" rotation="0 0 0"></a-entity>
+
+        </a-marker>
+
+        <!-- Camera -->
+        <a-entity camera></a-entity>
     </a-scene>
-  </body>
+</body>
+
 </html>
